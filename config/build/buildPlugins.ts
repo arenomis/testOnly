@@ -17,7 +17,7 @@ export const buildPlugins = ({mode, paths, platform}: BuildOptions): webpack.Con
 
     if (isDev) {
         plugins.push(new webpack.ProgressPlugin())
-        plugins.push(new ForkTsCheckerWebpackPlugin()) // Для проверки типов в риалтайме без замедления комплияции
+        plugins.push(new ForkTsCheckerWebpackPlugin()) 
         plugins.push(new ReactRefreshWebpackPlugin())
     }
 

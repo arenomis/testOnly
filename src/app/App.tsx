@@ -1,18 +1,21 @@
-import Example from "shared/assets/example.svg";
-import cls from './styles/app.module.scss'
+import React from 'react';
+import cls from './styles/app.module.scss';
+import HistoricalDatesPage from './ui/HistoricalDatesPage';
 
 const App = () => {
+  if (__PLATFORM__ === 'desktop') {
+    return (
+      <div className={cls.app}>
+        <HistoricalDatesPage />
+      </div>
+    );
+  }
 
-    if (__PLATFORM__ === 'desktop') { // DefinePlugin(); при сборке mobile эта часть кода выпилится из билда
-        return <div>
-            <Example/>
-            <div className={cls.app}> desktop version</div>
-        </div>
-    }
+  if (__PLATFORM__ === 'mobile') {
+    return <div>Mobile version</div>;
+  }
 
-    if (__PLATFORM__ === 'mobile') {
-        return <div>mobile version</div>
-    }
+  return null;
 };
 
 export default App;

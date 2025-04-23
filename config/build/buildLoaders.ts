@@ -27,7 +27,7 @@ export const buildLoaders = (options: BuildOptions): webpack.Configuration["modu
         options: {
             modules: {
                 localIdentName: isDev ? '[path][name]__[local]--[hash:base64:8]' : '[hash:base64:8]',
-                namedExport: false // Для того, чтобы указывать `import cls`, а не `import * as cls`
+                namedExport: false 
             },
         }
     }
@@ -38,15 +38,11 @@ export const buildLoaders = (options: BuildOptions): webpack.Configuration["modu
     }
 
     const tsLoader = {
-        // ts-loader работает с jsx
-        // без ts-loader понадобился бы babel-loader
         test: /\.tsx?$/,
         use: [{
             loader: 'ts-loader',
             options: {
-                transpileOnly: isDev, // ts только на момент компиляции, без проверки типов для дева
-                // Для проверки типов в риалтайме без замедления компиляции плагин
-                // fork-ts-checker-webpack-plugin
+                transpileOnly: isDev, 
 
                 getCustomTransformers: () => ({
                     before: [isDev && ReactRefreshTypeScript()].filter(Boolean)

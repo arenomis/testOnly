@@ -5,18 +5,18 @@
     "module": "ESNext",
     "target": "es5",
     "jsx": "react-jsx",
-    // react-jsx Позволяет не импортировать React
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    // allowSyntheticDefaultImports позволяет имитировать дефолтный импорт там, где его нет
     "esModuleInterop": true,
-    // esModuleInterop позволяет работать с библиотеками, в которых CommonJS иморты
-    "baseUrl": "./", // Для алиасов (модулей)
+    "baseUrl": "./src",
     "paths": {
-      "*": [
-        "src/*"
-      ]
+      "@app/*": ["app/*"], 
+      "@features/*": ["features/*"], 
+      "@entities/*": ["entities/*"], 
+      "@widgets/*": ["widgets/*"], 
+      "@shared/*": ["shared/*"], 
+      "@pages/*": ["pages/*"] 
     }
   },
   "ts-node": {
