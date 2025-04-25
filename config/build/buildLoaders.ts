@@ -31,11 +31,24 @@ export const buildLoaders = (options: BuildOptions): webpack.Configuration["modu
             },
         }
     }
-
+    const globalStyleLoader = {
+        test: /\.global\.scss$/i, // Для глобальных стилей
+        use: [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader', // Без CSS Modules
+            'sass-loader',
+        ],
+    };
+    
     const styleLoader = {
         test: /\.s[ac]ss$/i,
-        use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, stylesWithModules, "sass-loader"],
-    }
+        exclude: /\.global\.scss$/i, 
+        use: [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            stylesWithModules, // Используем CSS Modules
+            'sass-loader',
+        ],
+    };
     const cssLoader = {
         test: /\.css$/,
         use: [
@@ -43,7 +56,7 @@ export const buildLoaders = (options: BuildOptions): webpack.Configuration["modu
             {
                 loader: 'css-loader', // Обработка CSS
                 options: {
-                    modules: false, // Отключите CSS Modules, если они не нужны
+                    // modules: false, 
                 },
             },
         ],
@@ -69,6 +82,7 @@ export const buildLoaders = (options: BuildOptions): webpack.Configuration["modu
     }
 
     return [
+        globalStyleLoader,
         assetLoader,
         styleLoader,
         cssLoader,

@@ -1,17 +1,17 @@
-// Импорты
 import React from 'react';
-import { Provider } from 'react-redux'; // Redux Provider
+import { Provider } from 'react-redux';
 import { store } from './store';
 import Timeline from './features/Timeline/ui/Timeline';
+import cls from './styles/app.module.scss'; // Импорт глобальных стилей
 
 // Основной компонент App
 const App = () => {
-  // Проверка платформы (desktop или mobile)
   if (__PLATFORM__ === 'desktop') {
     return (
       <Provider store={store}>
-        {/* Компонент временной шкалы */}
-        <Timeline />
+        <div className={cls.app}> 
+          <Timeline />
+        </div>
       </Provider>
     );
   }

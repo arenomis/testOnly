@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { timelineData } from '../data/timelineData';
 import CircleSelector from './CircleSelector';
 import EventSlider from './EventSlider';
-import './index.scss';
+
 
 const Timeline: React.FC = () => {
   const selectedPeriod = useSelector((state: any) => state.timeline.selectedPeriod);
