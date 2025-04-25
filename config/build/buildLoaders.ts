@@ -36,7 +36,18 @@ export const buildLoaders = (options: BuildOptions): webpack.Configuration["modu
         test: /\.s[ac]ss$/i,
         use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, stylesWithModules, "sass-loader"],
     }
-
+    const cssLoader = {
+        test: /\.css$/,
+        use: [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // Встраивание CSS или извлечение в файл
+            {
+                loader: 'css-loader', // Обработка CSS
+                options: {
+                    modules: false, // Отключите CSS Modules, если они не нужны
+                },
+            },
+        ],
+    };
     const tsLoader = {
         // ts-loader работает с jsx
         // без ts-loader понадобился бы babel-loader
@@ -52,6 +63,7 @@ export const buildLoaders = (options: BuildOptions): webpack.Configuration["modu
                     before: [isDev && ReactRefreshTypeScript()].filter(Boolean)
                 })
             }
+            
         }],
         exclude: /node_modules/,
     }
@@ -59,6 +71,7 @@ export const buildLoaders = (options: BuildOptions): webpack.Configuration["modu
     return [
         assetLoader,
         styleLoader,
+        cssLoader,
         tsLoader,
         svgrLoader,
     ]

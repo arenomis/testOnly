@@ -1,3 +1,24 @@
 .app {
-    background: red;
-}
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-left: 4px solid #ff69b4;
+  
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .timeline {
+      .years {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+  
+        span {
+          font-size: 60px;
+          font-weight: bold;
+          color: #007bff;
+        }
+      }
+    }
+  }

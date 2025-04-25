@@ -1,18 +1,27 @@
-import Example from "shared/assets/example.svg";
-import cls from './styles/app.module.scss'
+// Импорты
+import React from 'react';
+import { Provider } from 'react-redux'; // Redux Provider
+import { store } from './store';
+import Timeline from './features/Timeline/ui/Timeline';
 
+// Основной компонент App
 const App = () => {
+  // Проверка платформы (desktop или mobile)
+  if (__PLATFORM__ === 'desktop') {
+    return (
+      <Provider store={store}>
+        {/* Компонент временной шкалы */}
+        <Timeline />
+      </Provider>
+    );
+  }
 
-    if (__PLATFORM__ === 'desktop') { // DefinePlugin(); при сборке mobile эта часть кода выпилится из билда
-        return <div>
-            <Example/>
-            <div className={cls.app}> desktop version</div>
-        </div>
-    }
+  if (__PLATFORM__ === 'mobile') {
+    return <div>mobile version</div>;
+  }
 
-    if (__PLATFORM__ === 'mobile') {
-        return <div>mobile version</div>
-    }
+  // Если платформа не определена, возвращаем null
+  return null;
 };
 
 export default App;
