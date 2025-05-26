@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'; // Теперь useEffect импортирован
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedPeriod } from '../model/slice';
 import { timelineData } from '../data/timelineData';
-import styles from './CircleSelector.module.scss'; 
+import styles from './CircleSelector.module.scss';
 import { gsap } from 'gsap';
 
 const CircleSelector: React.FC = () => {

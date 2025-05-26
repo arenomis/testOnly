@@ -31,15 +31,19 @@ export const buildLoaders = (options: BuildOptions): webpack.Configuration["modu
             },
         }
     }
-    const globalStyleLoader = {
-        test: /\.global\.scss$/i, // Для глобальных стилей
-        use: [
-            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader', // Без CSS Modules
-            'sass-loader',
-        ],
-    };
-    
+   const globalStyleLoader = {
+  test: /\.global\.scss$/i,
+  use: [
+    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+    {
+      loader: 'css-loader',
+      options: {
+        modules: false, // Отключаем CSS Modules для глобальных стилей
+      },
+    },
+    'sass-loader',
+  ],
+};
     const styleLoader = {
         test: /\.s[ac]ss$/i,
         exclude: /\.global\.scss$/i, 
